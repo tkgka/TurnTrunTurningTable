@@ -1,7 +1,8 @@
 import discord
-from random import choice
+#from random import choice
 import pw.password as pw
 client = discord.Client()
+import random
 
 @client.event
 async def on_ready():
@@ -29,7 +30,7 @@ async def on_message(message):
 
     if command.startswith("!돌려돌려돌림판"):
         if(message.guild):                 
-            c_m = choice(members)     
+            #c_m = choice(members)     
             num = [e.strip() for e in command.split('!돌려돌려돌림판')][1]
             
             if(num == ""):
@@ -38,14 +39,10 @@ async def on_message(message):
                 num = len(members)
             else:
                 num =1
-            success = []
-
-            while len(success)!=num :
-                if c_m.name not in success:
-                    await message.channel.send(f"```축 당첨 \n @{c_m.name}#{c_m.discriminator}```")
-                    success.append(c_m.name)
-                    c_m = choice(members)
             
+            out = random.sample(members,num)
+            for i in range(0,num):
+                await message.channel.send(f"```축 당첨 \n @{out[i].name}#{out[i].discriminator}```")
 
         else:
             await message.author.send("개인 메시지에서는 지원하지 않습니다.")
