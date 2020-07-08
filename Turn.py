@@ -35,14 +35,18 @@ async def on_message(message):
             
             if(num == ""):
                 num = 1
+            elif(num.isdigit() == False):
+                num =1
             elif(int(num) >= len(members)):
                 num = len(members)
-            else:
-                num =1
+
             
-            out = random.sample(members,num)
-            for i in range(0,num):
-                await message.channel.send(f"```축 당첨 \n @{out[i].name}#{out[i].discriminator}```")
+            
+            out = random.sample(members,int(num))
+            await message.channel.send("```당첨자```")
+            for i in range(0,len(out)):
+                await message.channel.send(f"\n @{out[i].nick} ({out[i]})")
+            
 
         else:
             await message.author.send("개인 메시지에서는 지원하지 않습니다.")
