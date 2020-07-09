@@ -43,9 +43,12 @@ async def on_message(message):
             
             
             out = random.sample(members,int(num))
-            await message.channel.send("```당첨자```")
+            await message.channel.send("```당첨자\n```")
+            k=""
             for i in range(0,len(out)):
-                await message.channel.send(f"\n @{out[i].nick} ({out[i]})")
+                #await message.channel.send(f"\n <@{out[i].id}> ({out[i]})")
+                k+=f"<@{out[i].id}> ({out[i]})\n"
+            await message.channel.send(f"{k}")
             
 
         else:
