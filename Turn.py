@@ -8,7 +8,7 @@ import random
 async def on_ready():
     print(client.user.id)
     print("ready")
-    game = discord.Game("테스트")
+    game = discord.Game("'!help'로 사용법을 알 수 있다고")
     await client.change_presence(status=discord.Status.online, activity=game)
 
 
